@@ -6,8 +6,8 @@ import Title from "./components/Title";
 function App() {
   return (
     <div className="mx-auto container">
-      <Header />
-      <Title />
+      {/* <Header />
+      <Title /> */}
       <main className="mt-8 md:flex">
         <Form />
         <PatientsList />
