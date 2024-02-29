@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Error from "./Error";
 
 const Form = ({ patients, setPatients }) => {
   const [name, setName] = useState("");
@@ -131,11 +132,7 @@ const Form = ({ patients, setPatients }) => {
           />
         </div>
 
-        {error && (
-          <p className="text-red-600 my-1 p-1 text-center uppercase font-semibold">
-            All fields are required
-          </p>
-        )}
+        {error && <Error>All fields are required</Error>}
 
         <input
           type="submit"
