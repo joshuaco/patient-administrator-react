@@ -12,7 +12,7 @@ function App() {
       <Title />
       <main className="mt-8 md:flex">
         <Form patients={patients} setPatients={setPatients} />
-        <PatientsList />
+        <PatientsList patients={patients} />
       </main>
     </div>
   );
