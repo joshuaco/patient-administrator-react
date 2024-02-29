@@ -1,23 +1,39 @@
 import { useState } from "react";
 
-const Form = () => {
+const Form = ({ patients, setPatients }) => {
   const [name, setName] = useState("");
   const [owner, setOwner] = useState("");
   const [phone, setPhone] = useState("");
   const [date, setDate] = useState("");
   const [description, setDescription] = useState("");
-
-  console.log(name, owner, phone, date, description);
+  const [error, setError] = useState(false);
 
   function handleSubmit(e) {
     e.preventDefault();
 
     if ([name, owner, phone, date, description].includes("")) {
-      alert("All fields are required");
+      setError(true);
       return;
     }
 
-    console.log("Submitting form");
+    setError(false);
+
+    const newPatient = {
+      name,
+      owner,
+      phone,
+      date,
+      description,
+    };
+
+    setPatients([...patients, newPatient]);
+
+    // Reset the form
+    setName("");
+    setOwner("");
+    setPhone("");
+    setDate("");
+    setDescription("");
   }
 
   return (
@@ -78,7 +94,6 @@ const Form = () => {
             type="tel"
             placeholder="123-456-7890"
             className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md focus:outline-none focus:border-indigo-600"
-            pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
             value={phone || ""}
             onChange={(e) => setPhone(e.target.value)}
           />
@@ -94,7 +109,7 @@ const Form = () => {
           <input
             id="date"
             type="date"
-            className="border-2 w-full p-2 mt-2 text-gray-400 rounded-md focus:outline-none focus:border-indigo-600"
+            className="border-2 w-full p-2 mt- rounded-md focus:outline-none focus:border-indigo-600"
             value={date || ""}
             onChange={(e) => setDate(e.target.value)}
           />
@@ -115,6 +130,12 @@ const Form = () => {
             onChange={(e) => setDescription(e.target.value)}
           />
         </div>
+
+        {error && (
+          <p className="text-red-600 my-1 p-1 text-center uppercase font-semibold">
+            All fields are required
+          </p>
+        )}
 
         <input
           type="submit"

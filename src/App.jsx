@@ -1,15 +1,17 @@
+import { useState } from "react";
+
 import Form from "./components/Form";
-import Header from "./components/Header";
 import PatientsList from "./components/PatientsList";
 import Title from "./components/Title";
 
 function App() {
+  const [patients, setPatients] = useState([]);
+
   return (
     <div className="mx-auto container">
-      {/* <Header />
-      <Title /> */}
+      <Title />
       <main className="mt-8 md:flex">
-        <Form />
+        <Form patients={patients} setPatients={setPatients} />
         <PatientsList />
       </main>
     </div>
