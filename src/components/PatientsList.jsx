@@ -11,14 +11,17 @@ function PatientsList({ patients }) {
 
       <div className="mt-8 md:h-screen md:overflow-y-scroll no-scrollbar">
         {patients.length === 0 ? (
-          <p className="font-bold text-gray-800 text-center text-3xl mt-8">
-            No Patients added
-          </p>
+          <>
+            <p className="font-bold text-gray-800 text-center text-3xl mt-8">
+              No Patients added
+            </p>
+            <img src="./cat.svg" alt="cat" className="w-1/5 mx-auto mt-5" />
+          </>
         ) : (
-          patients.map((patient, index) => {
+          patients.map((patient) => {
             return (
               <Patient
-                key={index}
+                key={Date.now()}
                 name={patient.name}
                 owner={patient.owner}
                 phone={patient.phone}
