@@ -9,6 +9,9 @@ const Form = ({ patients, setPatients }) => {
   const [description, setDescription] = useState("");
   const [error, setError] = useState(false);
 
+  const userId =
+    Math.random().toString(36).substring(2) + Date.now().toString(36);
+
   function handleSubmit(e) {
     e.preventDefault();
 
@@ -25,6 +28,7 @@ const Form = ({ patients, setPatients }) => {
       phone,
       date,
       description,
+      id: userId,
     };
 
     setPatients([...patients, newPatient]);

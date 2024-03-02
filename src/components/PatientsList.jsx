@@ -1,6 +1,6 @@
 import Patient from "./Patient";
 
-function PatientsList({ patients }) {
+function PatientsList({ patients, setPatient }) {
   return (
     <section className="md:w-1/2 lg:w-3/5">
       <h2 className="text-3xl font-bold text-center">Patients List</h2>
@@ -21,12 +21,9 @@ function PatientsList({ patients }) {
           patients.map((patient) => {
             return (
               <Patient
-                key={Date.now()}
-                name={patient.name}
-                owner={patient.owner}
-                phone={patient.phone}
-                date={patient.date}
-                description={patient.description}
+                key={patient.id}
+                patient={patient}
+                setPatient={setPatient}
               />
             );
           })

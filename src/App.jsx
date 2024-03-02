@@ -6,13 +6,14 @@ import Title from "./components/Title";
 
 function App() {
   const [patients, setPatients] = useState([]);
+  const [patient, setPatient] = useState({});
 
   return (
     <div className="mx-auto container">
       <Title />
       <main className="mt-8 md:flex">
         <Form patients={patients} setPatients={setPatients} />
-        <PatientsList patients={patients} />
+        <PatientsList patients={patients} setPatient={setPatient} />
       </main>
     </div>
   );
