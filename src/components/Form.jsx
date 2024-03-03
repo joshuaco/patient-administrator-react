@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Error from "./Error";
 
-const Form = ({ patients, setPatients }) => {
+const Form = ({ patients, setPatients, patient, setPatient }) => {
   const [name, setName] = useState("");
   const [owner, setOwner] = useState("");
   const [phone, setPhone] = useState("");
@@ -11,6 +11,20 @@ const Form = ({ patients, setPatients }) => {
 
   const userId =
     Math.random().toString(36).substring(2) + Date.now().toString(36);
+
+  useEffect(() => {
+    if (Object.keys(patient).length > 0) {
+      fillInputs();
+    }
+  }, [patient]);
+
+  function fillInputs() {
+    setName(patient.name);
+    setOwner(patient.owner);
+    setPhone(patient.phone);
+    setDate(patient.date);
+    setDescription(patient.description);
+  }
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -28,10 +42,22 @@ const Form = ({ patients, setPatients }) => {
       phone,
       date,
       description,
-      id: userId,
     };
 
-    setPatients([...patients, newPatient]);
+    if (patient.id) {
+      newPatient.id = patient.id;
+      // map returns a new array Joshua!!
+      const patientEdited = patients.map((patientState) =>
+        patientState.id === patient.id ? newPatient : patientState
+      );
+
+      setPatients(patientEdited);
+      setPatient({});
+    } else {
+      // New Patient
+      newPatient.id = userId;
+      setPatients([...patients, newPatient]);
+    }
 
     // Reset the form
     setName("");
@@ -140,7 +166,7 @@ const Form = ({ patients, setPatients }) => {
 
         <input
           type="submit"
-          value="Add Patient"
+          value={patient.id ? "Update Patient" : "Add Patient"}
           className="bg-indigo-600 w-full p-3 mt-8 text-white uppercase font-bold rounded-md hover:bg-indigo-700 cursor-pointer transition-colors"
         />
       </form>
