@@ -1,15 +1,24 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import Form from "./components/Form";
 import PatientsList from "./components/PatientsList";
 import Title from "./components/Title";
 
 function App() {
-  const [patients, setPatients] = useState([]);
+  const [patients, setPatients] = useState(
+    JSON.parse(localStorage.getItem("patients")) ?? []
+  );
   const [patient, setPatient] = useState({});
 
+  useEffect(() => {
+    localStorage.setItem("patients", JSON.stringify(patients));
+
+    if (patients.length === 0) {
+      localStorage.removeItem("patients");
+    }
+  }, [patients]);
+
   const deletePatient = (id) => {
-    console.log("deleting patient #", id);
     const patientsUpdated = patients.filter((patient) => patient.id !== id);
     setPatients(patientsUpdated);
   };
