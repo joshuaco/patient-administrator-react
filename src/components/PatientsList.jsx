@@ -1,6 +1,6 @@
 import Patient from "./Patient";
 
-function PatientsList({ patients, setPatient }) {
+function PatientsList({ patients, setPatient, deletePatient }) {
   return (
     <section className="md:w-1/2 lg:w-3/5">
       <h2 className="text-3xl font-bold text-center">Patients List</h2>
@@ -24,6 +24,7 @@ function PatientsList({ patients, setPatient }) {
                 key={patient.id}
                 patient={patient}
                 setPatient={setPatient}
+                deletePatient={deletePatient}
               />
             );
           })

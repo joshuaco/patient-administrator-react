@@ -1,7 +1,14 @@
-function Patient({ patient, setPatient }) {
-  const { name, owner, phone, date, description } = patient;
+function Patient({ patient, setPatient, deletePatient }) {
+  const { name, owner, phone, date, description, id } = patient;
 
-  const handleDelete = (e) => {};
+  const handleDelete = () => {
+    const confirm = window.confirm(
+      "Are you sure you want to delete this patient?"
+    );
+
+    if (!confirm) return;
+    deletePatient(id);
+  };
 
   return (
     <article className="bg-white shadow rounded-lg p-8 mb-4 ml-3 flex lg:flex-row md:flex-col">
@@ -33,6 +40,7 @@ function Patient({ patient, setPatient }) {
         <button
           type="button"
           className="text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm lg:w-1/2 sm:w-full px-5 py-2.5 text-center"
+          onClick={handleDelete}
         >
           Delete
         </button>
