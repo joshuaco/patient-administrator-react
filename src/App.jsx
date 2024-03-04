@@ -26,7 +26,6 @@ function App() {
 
   return (
     <div className="mx-auto container">
-      <Header />
       <Title />
       <main className="mt-8 md:flex">
         <Form
