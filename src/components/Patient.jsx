@@ -11,8 +11,8 @@ function Patient({ patient, setPatient, deletePatient }) {
   };
 
   return (
-    <article className="bg-white shadow rounded-lg p-8 mb-4 ml-3 flex lg:flex-row md:flex-col">
-      <div className="lg:w-3/4 sm:w-full">
+    <article className="bg-white shadow rounded-lg p-8 mb-4 ml-3 flex flex-row md:flex-col lg:flex-row">
+      <div className="lg:w-3/4 w-full">
         <p className="font-bold text-gray-700 uppercase">
           Pet's Name: <span className="font-normal">{name}</span>
         </p>
@@ -29,17 +29,17 @@ function Patient({ patient, setPatient, deletePatient }) {
           Description: <span className="font-normal">{description}</span>
         </p>
       </div>
-      <div className="w-1/4 flex flex-col items-center justify-center gap-4">
+      <div className="w-1/4 md:w-full lg:w-1/4 flex flex-col md:flex-row lg:flex-col items-center justify-center gap-4">
         <button
           type="button"
-          className="text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm lg:w-1/2 sm:w-full px-5 py-2.5 text-center"
+          className="text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm lg:w-1/2 w-full px-5 py-2.5 text-center"
           onClick={() => setPatient(patient)}
         >
           Edit
         </button>
         <button
           type="button"
-          className="text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm lg:w-1/2 sm:w-full px-5 py-2.5 text-center"
+          className="text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm lg:w-1/2 w-full px-5 py-2.5 text-center"
           onClick={handleDelete}
         >
           Delete
