@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import Form from "./components/Form";
 import PatientsList from "./components/PatientsList";
 import Title from "./components/Title";
+import Header from "./components/Header";
 
 function App() {
   const [patients, setPatients] = useState(
@@ -25,6 +26,7 @@ function App() {
 
   return (
     <div className="mx-auto container">
+      <Header />
       <Title />
       <main className="mt-8 md:flex">
         <Form
